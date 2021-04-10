@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}QUEST BOARD PAGE{% endblock %}
+{% block title %}QUESTS{% endblock %}
 
 {% block styles %}
 {% endblock %}
@@ -12,7 +12,22 @@
 <h2>{{ quest.questName }}</h2>
 <h3>{{ quest.questDescription }}</h3>
 <h4>required stars: {{ quest.numStars }}</h4>
-<button> <a href='{% url "questboard_update" questboard.id %}'>Edit</a></button>
+{% if quest.forAll == True %}<h4>For everyone</h4>
+
+{% else %}<h4>For 3 students</h4>
+  {% if quest.student1 == "" %} <button> <a href='{% url "slot1" quest.id %}'>For student Dibs</a></button> <br>{% else %}<p>{{ quest.student1}}</p>{% endif %}
+  {% if quest.student2 == "" %} <button>  <a href='{% url "slot2" quest.id %}'>For student Dibs</a></button><br>{% else %}<p>{{ quest.student2 }}</p>{% endif %}
+  {% if quest.student3 == "" %} <button><a href='{% url "slot3" quest.id %}'>For student Dibs</a></button>{% else %}<p>{{ quest.student3}}</p>{% endif %}
+    
+    
+    
+    
+    {% endif %}
+
+
+
+
+ {% if quest.student1 == "" and quest.student2 == "" and quest.student3 == "" %} <br>  <button> <a href='{% url "questboard_update" questboard.id %}'>Edit</a></button>{% endif %}
 {% endif %}
 {% endfor %}
 {% endblock %}

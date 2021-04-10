@@ -5,7 +5,8 @@ from .views import (
      QuestboardUpdate,
      QuestPage,
      QuestUpdate,
-     QuestCreate)
+     QuestCreate, firstslot, secondslot, 
+     thirdslot)
 
 urlpatterns = [
     path('', index, name='index'),
@@ -15,4 +16,7 @@ urlpatterns = [
     path("questpage/<int:pk>", QuestPage, name="questpage"),
     path("quest_create/<int:pk>", QuestCreate, name="quest_create"),
     path("quest_update/<int:pk>", QuestUpdate, name="quest_update"),
+    path("slot1/<int:pk>", firstslot, name="slot1"),
+    path("slot2/<int:pk>", secondslot, name="slot2"),
+    path("slot3/<int:pk>", thirdslot, name="slot3")
 ]
