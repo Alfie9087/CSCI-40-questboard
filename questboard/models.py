@@ -13,6 +13,7 @@ class QuestboardModel(models.Model):
     def __str__(self):
         return "{}".format(self.boardName)
 
+
 class QuestModel(models.Model):
     boardOrigin = models.ForeignKey(
         QuestboardModel, on_delete=models.CASCADE, verbose_name="Board Name", null=True)

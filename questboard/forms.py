@@ -15,6 +15,7 @@ class QuestboardForm(forms.ModelForm):
             "numStars",
         ]
 
+
 class QuestForm(forms.ModelForm):
     class Meta:
         model = QuestModel
@@ -25,21 +26,25 @@ class QuestForm(forms.ModelForm):
             "forAll"
         ]
 
+
 class DibsForm1(forms.ModelForm):
     class Meta:
         model = QuestModel
         fields = [
             "student1",
         ]
+
 class DibsForm2(forms.ModelForm):
     class Meta:
         model = QuestModel
         fields = [
              "student2",
         ]
+
 class DibsForm3(forms.ModelForm):
     class Meta:
         model = QuestModel
         fields = [
              "student3",
         ]
+        
