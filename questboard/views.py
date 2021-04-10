@@ -73,7 +73,7 @@ def QuestPage(request, pk):
 #         quest.origin_questboard = origin 
 #         quest.save()
 #         return redirect('questboard_detail', pk)
-
+    
 
 def QuestCreate(request, pk):
     originname = QuestboardModel.objects.get(id=pk)
@@ -82,8 +82,8 @@ def QuestCreate(request, pk):
         quest = form.save(commit=False)
         quest.boardOrigin = originname
         quest.save()
-        return redirect("/questboard")
-    return render(request, "quest_edit.html", {"form": form})
+        return redirect("questpage", pk)
+    return render(request, "quest_edit.html", {"form": form, "boards":originname})
 
 def QuestUpdate(request, pk):
     quests = QuestModel.objects.get(id=pk)
@@ -93,7 +93,7 @@ def QuestUpdate(request, pk):
         form = QuestForm(request.POST, instance=quests)
         if form.is_valid():
             form.save()
-            return redirect("questpage.html", pk)
+            return redirect("questpage", pk)
     return render(request, "quest_edit.html", {"form": form})
 
 #redirect(request.get_full_path())
