@@ -64,12 +64,12 @@ def QuestCreate(request, pk):
 def QuestUpdate(request, pk):
     quests = QuestModel.objects.get(id=pk)
     form = QuestForm(instance=quests)
-
+    origin = quests.boardOrigin
     if request.method == "POST":
         form = QuestForm(request.POST, instance=quests)
         if form.is_valid():
             form.save()
-            return redirect("questpage", pk)
+            return redirect("questpage", origin.pk)
     return render(request, "quest_edit.html", {"form": form})
 
 
