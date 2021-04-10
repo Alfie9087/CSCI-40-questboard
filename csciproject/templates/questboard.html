@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}QUEST BOARD PAGE{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+    <center><h1>QUEST BOARD PAGE</h1>
+    <p>test</p>
+    <button><a href="/questboard_create">Create Questboard</a></button>
+    {% for boards in questboards %}
+    <h2>{{ boards.boardName}}</h2><button><a href="{% url 'questboard_update' board.id %}">Edit</a></button>
+    <h3>{{ boards.boardDescription }}</h3>
+    <h4>required stars: {{ boards.numStars }}</h4>
+    {% endfor %}
+</body>
+</html>
+{% endblock %}

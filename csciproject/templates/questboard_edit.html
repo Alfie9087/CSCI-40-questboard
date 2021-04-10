@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}QUEST BOARD PAGE{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Add" name ="create">
+</form>
+{% endblock %}
