@@ -39,5 +39,8 @@ def QuestboardUpdate(request, pk):
             return redirect("/questboard")
     return render(request, "questboard_edit.html", {"form": form})
 
-def QuestPage(request, pk):
-    return render(request, "quest.html")
+
+# def QuestPage(request, pk):
+#     questboard = QuestboardModel.objects.get(id=pk)
+#     quests = questboard
+#     return render(request, "quest.html")
