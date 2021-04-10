@@ -12,6 +12,7 @@ from django.views.generic.detail import DetailView
 
 
 def index(request):
+    
     return redirect("/questboard")
     
 
@@ -20,11 +21,14 @@ def QuestboardPage(request):
     return render(request, 'questboard.html', {"questboards":questboards})
 
 
+
+
 def QuestboardCreate(request):
     form = QuestboardForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect("/questboard")
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("/questboard")
     return render(request, "questboard_edit.html", {"form": form})
 
 
@@ -42,7 +46,17 @@ def QuestboardUpdate(request, pk):
 
 def QuestPage(request, pk):
     quests = QuestModel.objects.all()
-    return render(request, "questspage.html", {"quests": quests})
+    questboard = QuestboardModel.objects.get(id=pk)
+    print(questboard)
+    form = QuestForm(request.POST)
+    if request.method == "POST":
+        form = QuestForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            print("nani")
+        return redirect("/questboard")
+    return render(request, "questspage.html", {"quests": quests, "questboard":questboard, "form": form})
 
 
 def QuestCreate(request):
@@ -51,6 +65,17 @@ def QuestCreate(request):
         form.save()
 
         return redirect("/questboard")
+    return render(request, "quest_edit.html", {"form": form})
+
+def QuestUpdate(request, pk):
+    quests = QuestModel.objects.get(id=pk)
+    form = QuestForm(instance=quests)
+
+    if request.method == "POST":
+        form = QuestForm(request.POST, instance=quests)
+        if form.is_valid():
+            form.save()
+            return redirect("/questboard")
     return render(request, "quest_edit.html", {"form": form})
 
 #redirect(request.get_full_path())

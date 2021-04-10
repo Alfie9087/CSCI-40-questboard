@@ -15,7 +15,7 @@ class QuestboardModel(models.Model):
 
 class QuestModel(models.Model):
     boardOrigin = models.ForeignKey(
-        QuestboardModel, on_delete=models.CASCADE, verbose_name="Board Name")
+        QuestboardModel, on_delete=models.CASCADE, verbose_name="Board Name", null=True)
     questName = models.CharField(
         max_length=100, null=True, verbose_name="Quest Name")
     questDescription = models.CharField(

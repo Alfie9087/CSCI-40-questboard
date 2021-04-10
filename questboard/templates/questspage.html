@@ -3,13 +3,53 @@
 {% block title %}QUEST BOARD PAGE{% endblock %}
 
 {% block styles %}
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
 {% endblock %}
 
 {% block content %}
+
+<button onclick="openModal()">Add Item</button>
+<div id="myModal" class="modal">
+    <div class="modal=content">
+        <span class="close">&times;</span>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Add" name ="create">
+        </form>
+    </div>
+</div>
+
+
 {% for quest in quests %}
 <h2>{{ quest.questName }}</h2>
 <h3>{{ quest.questDescription }}</h3>
 <h4>required stars: {{ quest.numStars }}</h4>
-<button> <a href='{% url "quest_create" %}'>Create</a></button>
+<button> <a href='{% url "quest_update" quest.id %}'>Edit</a></button><button></button>
 {% endfor %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        var modal = document.getElementById("myModal");
+
+        var close = document.getElementsByClassName("close")[0];
+        var form = document.getElementById("form");
+
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+
+        close.onclick = function(event) {
+        if (event.target == close) {
+            modal.style.display = "none";
+        }
+        }
+
+    </script>
 {% endblock %}

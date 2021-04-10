@@ -3,7 +3,8 @@ from .views import (
     index, QuestboardPage,
     QuestboardCreate,
      QuestboardUpdate,
-     QuestPage, QuestCreate)
+     QuestPage, QuestCreate,
+     QuestUpdate)
 
 urlpatterns = [
     path('', index, name='index'),
@@ -12,4 +13,5 @@ urlpatterns = [
     path("questboard_update/<int:pk>", QuestboardUpdate, name="questboard_update"),
     path("questpage/<int:pk>", QuestPage, name="questpage"),
     path("quest_create/", QuestCreate, name="quest_create"),
+    path("quest_update/<int:pk>", QuestUpdate, name="quest_update")
 ]

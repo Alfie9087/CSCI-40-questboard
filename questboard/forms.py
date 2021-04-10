@@ -19,8 +19,8 @@ class QuestForm(forms.ModelForm):
     class Meta:
         model = QuestModel
         fields = [
-            "boardOrigin",
             "questName",
+            "questDescription",
             "numStars",
             "forAll"
         ]
