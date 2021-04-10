@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}QUEST BOARD PAGE{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+{% for quest in quests %}
+<h2>{{ quest.questName }}</h2>
+<h3>{{ quest.questDescription }}</h3>
+<h4>required stars: {{ quest.numStars }}</h4>
+<button> <a href='{% url "quest_create" %}'>Create</a></button>
+{% endfor %}
+{% endblock %}

@@ -10,9 +10,10 @@
     <p>test</p>
     <button><a href="/questboard_create">Create Questboard</a></button>
     {% for boards in questboards %}
-    <h2>{{ boards.boardName}}</h2><button><a href="{% url 'questboard_update' board.id %}">Edit</a></button>
+    <h2>{{ boards.boardName}}</h2>
     <h3>{{ boards.boardDescription }}</h3>
     <h4>required stars: {{ boards.numStars }}</h4>
+    <button> <a href='{% url "questboard_update" boards.id %}'>Edit</a></button><button> <a href='{% url "questpage" boards.id %}'>Open</a></button>
     {% endfor %}
 </body>
 </html>

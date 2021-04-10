@@ -18,6 +18,8 @@ class QuestModel(models.Model):
         QuestboardModel, on_delete=models.CASCADE, verbose_name="Board Name")
     questName = models.CharField(
         max_length=100, null=True, verbose_name="Quest Name")
+    questDescription = models.CharField(
+        max_length=100, null=True, verbose_name="Quest Description")
     numStars = models.IntegerField(default=0, verbose_name="Number of Stars")
     forAll = models.BooleanField(default=True, verbose_name="For all students")
 

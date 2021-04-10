@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import QuestboardModel, QuestModel
 
-from .forms import QuestboardForm
+from .forms import QuestboardForm, QuestForm
 
 from django.views import View
 from django.views.generic.list import ListView
@@ -40,7 +40,17 @@ def QuestboardUpdate(request, pk):
     return render(request, "questboard_edit.html", {"form": form})
 
 
-# def QuestPage(request, pk):
-#     questboard = QuestboardModel.objects.get(id=pk)
-#     quests = questboard
-#     return render(request, "quest.html")
+def QuestPage(request, pk):
+    quests = QuestModel.objects.all()
+    return render(request, "questspage.html", {"quests": quests})
+
+
+def QuestCreate(request):
+    form = QuestForm(request.POST)
+    if form.is_valid():
+        form.save()
+
+        return redirect("/questboard")
+    return render(request, "quest_edit.html", {"form": form})
+
+#redirect(request.get_full_path())

@@ -14,3 +14,13 @@ class QuestboardForm(forms.ModelForm):
             "boardDescription",
             "numStars",
         ]
+
+class QuestForm(forms.ModelForm):
+    class Meta:
+        model = QuestModel
+        fields = [
+            "boardOrigin",
+            "questName",
+            "numStars",
+            "forAll"
+        ]
