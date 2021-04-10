@@ -32,7 +32,6 @@ def QuestboardCreate(request):
 def QuestboardUpdate(request, pk):
     questboard = QuestboardModel.objects.get(id=pk)
     form = QuestboardForm(instance=questboard)
-
     if request.method == "POST":
         form = QuestboardForm(request.POST, instance=questboard)
         if form.is_valid():
