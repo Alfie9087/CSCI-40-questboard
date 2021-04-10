@@ -6,6 +6,7 @@ from .models import (
     QuestboardModel, QuestModel,
     )
 
+
 class QuestboardForm(forms.ModelForm):
     class Meta:
         model = QuestboardModel
@@ -34,6 +35,7 @@ class DibsForm1(forms.ModelForm):
             "student1",
         ]
 
+
 class DibsForm2(forms.ModelForm):
     class Meta:
         model = QuestModel
@@ -41,10 +43,10 @@ class DibsForm2(forms.ModelForm):
              "student2",
         ]
 
+
 class DibsForm3(forms.ModelForm):
     class Meta:
         model = QuestModel
         fields = [
              "student3",
         ]
-        

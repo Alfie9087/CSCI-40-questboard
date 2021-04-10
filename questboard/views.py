@@ -13,11 +13,11 @@ from django.views.generic.detail import DetailView
 
 def index(request):
     return redirect("/questboard")
-    
+
 
 def QuestboardPage(request):
     questboards = QuestboardModel.objects.all()
-    return render(request, 'questboard.html', {"questboards":questboards})
+    return render(request, 'questboard.html', {"questboards": questboards})
 
 
 def QuestboardCreate(request):
@@ -43,8 +43,10 @@ def QuestboardUpdate(request, pk):
 def QuestPage(request, pk):
     questboard = QuestboardModel.objects.get(id=pk)
     quests = QuestModel.objects.all()
-    return render(request, "questspage.html", {"quests": quests, "questboard":questboard})
-    
+    return render(
+        request, "questspage.html",
+        {"quests": quests, "questboard": questboard})
+
 
 def QuestCreate(request, pk):
     originname = QuestboardModel.objects.get(id=pk)
@@ -54,7 +56,9 @@ def QuestCreate(request, pk):
         quest.boardOrigin = originname
         quest.save()
         return redirect("questpage", pk)
-    return render(request, "quest_edit.html", {"form": form, "boards":originname})
+    return render(
+        request, "quest_edit.html",
+        {"form": form, "boards": originname})
 
 
 def QuestUpdate(request, pk):
@@ -78,30 +82,30 @@ def firstslot(request, pk):
         if form.is_valid():
             form.save()
             return redirect("questpage", origin.pk)
-    return render(request,"dibs.html", {"form": form})
+    return render(request, "dibs.html", {"form": form})
 
 
 def secondslot(request, pk):
     quests = QuestModel.objects.get(id=pk)
     origin = quests.boardOrigin
     form = DibsForm2(instance=quests)
-    
+
     if request.method == "POST":
         form = DibsForm2(request.POST, instance=quests)
         if form.is_valid():
-           form.save()
-           return redirect("questpage", origin.pk)
-    return render(request,"dibs.html", {"form": form})
+            form.save()
+            return redirect("questpage", origin.pk)
+    return render(request, "dibs.html", {"form": form})
 
 
 def thirdslot(request, pk):
     quests = QuestModel.objects.get(id=pk)
     origin = quests.boardOrigin
     form = DibsForm3(instance=quests)
-    
+
     if request.method == "POST":
         form = DibsForm3(request.POST, instance=quests)
         if form.is_valid():
             form.save()
             return redirect("questpage", origin.pk)
-    return render(request,"dibs.html", {"form": form})
+    return render(request, "dibs.html", {"form": form})

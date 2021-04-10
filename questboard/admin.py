@@ -8,6 +8,7 @@ from .models import (
 class QuestboardAdmin(admin.ModelAdmin):
     model = QuestboardModel
 
+
 class QuestAdmin(admin.ModelAdmin):
     model = QuestModel
 
